@@ -7,6 +7,8 @@ import QuizLogo from '../src/components/QuizLogo';
 import QuizBackground from '../src/components/QuizBackground';
 import Footer from '../src/components/Footer';
 import GitHubCorner from '../src/components/GitHubCorner';
+import Input from '../src/components/Input';
+import Button from '../src/components/Button';
 
 
 // const BackgroundImage = styled.div`
@@ -16,7 +18,7 @@ import GitHubCorner from '../src/components/GitHubCorner';
 //   background-position: center;
 // `;
 
-export const QuizContainer = styled.div`
+const QuizContainerr = styled.div`
   width:100%;
   max-width : 350px;
   padding-top : 45px;
@@ -35,7 +37,7 @@ export default function Home() {
        <Head>
         <title>AluraQuiz - Modelo Base</title>
       </Head>
-      <QuizContainer>
+      <QuizContainerr>
         <QuizLogo />
         <Widget>
           <Widget.Header>
@@ -47,18 +49,15 @@ export default function Home() {
               router.push(`/quiz?name=${name}`)
               console.log('fazendo submit');
             }}>
-              <input 
-              onChange = {function (infosDoEvento){
-                console.log(infosDoEvento.target.value);
-
-               // name = infosDoEvento.target.value;
-               setName(infosDoEvento.target.value);
-              }}
-              type="text" placeholder="Diz ai seu nome"></input>
-              <button type="submit" disabled={name.length === 0}> 
-                Jogar 
-                {name}
-              </button>
+               <Input
+                name="nomeDoUsuario"
+                onChange={(infosDoEvento) => setName(infosDoEvento.target.value)}
+                placeholder="Diz ai seu nome"
+                value={name}
+              />
+              <Button type="submit" disabled={name.length === 0}>
+                {`Jogar ${name}`}
+              </Button>
             </form>
           </Widget.Content>
         </Widget>
@@ -71,7 +70,7 @@ export default function Home() {
         </Widget>    
         <Footer />
         <GitHubCorner projectUrl="https://github.com/atimilson" />   
-      </QuizContainer> 
+      </QuizContainerr> 
     </QuizBackground>
   )
 }
